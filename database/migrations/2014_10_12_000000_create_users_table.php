@@ -19,12 +19,14 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('is_admin');
             $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('cost_center_id');
             $table->string('phone_number');
             $table->string('cpf');
             $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('cost_center_id')->references('id')->on('cost_center');
         });
     }
 
