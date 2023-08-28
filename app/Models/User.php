@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'cpf',
+        'phone_number',
+        'is_admin',
+        'cost_center_id'
     ];
 
     /**
@@ -42,4 +47,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function role() {
+        return $this->hasOne(Roles::class);
+    }
+
+
+    public function costCenter() {
+        return $this->belongsToMany(CostCenter::class, 'user_costcenter');
+    }
+
+
+    public function createdServiceOrders() {
+        return $this->belongsToMany(ServiceOrder::class);
+    }
+
+    
+    public function lastUpdatedServiceOrder() {
+        return $this->belongsToMany(ServiceOrder::class);
+    }
+
+
+    public function comments() {
+        return $this->belongsToMany(Comment::class);
+    }
 }

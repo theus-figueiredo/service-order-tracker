@@ -11,17 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cost_center', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('contact');
-            $table->string('manager');
-            $table->string('manager_contact');
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
+        Schema::create('user_costcenter', function (Blueprint $table) {
+            $table->unasignedBigInteger('user_id');
+            $table->unasignedBigInteger('cost_center_id');
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('cost_center_id')->references('id')->on('cost_center');
         });
     }
 
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cost_center');
+        Schema::dropIfExists('user_costcenter');
     }
 };

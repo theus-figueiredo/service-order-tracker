@@ -18,15 +18,15 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('is_admin');
-            $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('cost_center_id');
+            $table->foreignId('role_id')->nullable()->constrained('roles');
+            //$table->unsignedBigInteger('cost_center_id')->nullable();
             $table->string('phone_number');
             $table->string('cpf');
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('role_id')->references('id')->on('roles');
-            $table->foreign('cost_center_id')->references('id')->on('cost_center');
+            //$table->foreign('role_id')->references('id')->on('roles');
+            //$table->foreign('cost_center_id')->references('id')->on('cost_center');
         });
     }
 
