@@ -20,7 +20,6 @@ class RoleController extends Controller
         $data = $request->all();
 
         try {
-
             $new_role = $this->role->create($data);
 
             return response()->json(['data' => $new_role]);
@@ -52,7 +51,6 @@ class RoleController extends Controller
         $data = $request->all();
 
         try  {
-
             $role = $this->role->findOrFail($id);
             $role->update($data);
 
@@ -67,7 +65,6 @@ class RoleController extends Controller
     public function destroy(string $id) {
         
         try {
-
             $role = $this->role->findOrFail($id);
             $role->delete();
 
@@ -82,7 +79,6 @@ class RoleController extends Controller
     public function usersWithGivenRole(string $id) {
 
         try {
-
             $roles_plus_users = $this->role->findOrFail($id);
 
             return response()->json(['data' => $roles_plus_users->user()], 200);
